@@ -1,0 +1,145 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    34.0522,
+                    -118.2437
+                ]
+            },
+            "properties": {
+                "id": 1,
+                "name": "Plane A"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    40.7128,
+                    -74.0060
+                ]
+            },
+            "properties": {
+                "id": 2,
+                "name": "Plane B"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    51.5074,
+                    -0.1278
+                ]
+            },
+            "properties": {
+                "id": 3,
+                "name": "Plane C"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    35.6895,
+                    139.6917
+                ]
+            },
+            "properties": {
+                "id": 4,
+                "name": "Plane D"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    48.8566,
+                    2.3522
+                ]
+            },
+            "properties": {
+                "id": 5,
+                "name": "Plane E"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    55.7558,
+                    37.6173
+                ]
+            },
+            "properties": {
+                "id": 6,
+                "name": "Plane F"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -33.8688,
+                    151.2093
+                ]
+            },
+            "properties": {
+                "id": 7,
+                "name": "Plane G"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    37.7749,
+                    -122.4194
+                ]
+            },
+            "properties": {
+                "id": 8,
+                "name": "Plane H"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    19.4326,
+                    -99.1332
+                ]
+            },
+            "properties": {
+                "id": 9,
+                "name": "Plane I"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -23.5505,
+                    -46.6333
+                ]
+            },
+            "properties": {
+                "id": 10,
+                "name": "Plane J"
+            }
+        }
+    ]
+}
