@@ -1,11 +1,12 @@
-import './App.css'
+import Home from './screens/Home.tsx';
+import './App.css';
 
 function App() {
-
   return (
     <>
+      <Home />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
