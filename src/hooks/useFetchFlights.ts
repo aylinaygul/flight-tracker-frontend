@@ -23,7 +23,7 @@ export const useFetchFlights = () => {
         };
 
         fetchCoordinates();
-        const interval = setInterval(fetchCoordinates, 500);
+        const interval = setInterval(fetchCoordinates, 1000);
         return () => clearInterval(interval);
     }, []);
 

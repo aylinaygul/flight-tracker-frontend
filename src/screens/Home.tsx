@@ -9,12 +9,12 @@ import InfoDrawer from '../components/InfoDrawer';
 
 export default function Home() {
     const mapContainerRef = useRef<HTMLDivElement | null>(null);
-    const { mapRef, mapLoadedRef } = useMap(mapContainerRef);
+    const { mapRef } = useMap(mapContainerRef);
     const coordinates = useFetchFlights();
     const [selectedFlight, setSelectedFlight] = useState<GeoJSON.Feature<GeoJSON.Point> | null>(null);
 
-    useMapLayers({ mapRef, mapLoadedRef, coordinates, selectedFlight, setSelectedFlight });
-    useTrails({ mapRef, mapLoadedRef, coordinates });
+    useMapLayers({ mapRef, coordinates, setSelectedFlight });
+    useTrails({ mapRef, coordinates });
 
     return (
         <>

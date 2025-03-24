@@ -1,19 +1,17 @@
 import { useRef, useEffect } from "react";
 import { FeatureCollection, Point } from "geojson";
-import mapboxgl from "mapbox-gl";
 
 interface TrailProps {
     mapRef: React.RefObject<mapboxgl.Map | null>,
-    mapLoadedRef: React.RefObject<Boolean>,
     coordinates: FeatureCollection<Point> | null
 }
 
-export const useTrails = ({ mapRef, mapLoadedRef, coordinates }: TrailProps) => {
+export const useTrails = ({ mapRef, coordinates }: TrailProps) => {
     const prevCoordinatesRef = useRef<GeoJSON.FeatureCollection<GeoJSON.Point> | null>(null);
     const trailsRef = useRef<FeatureCollection>({ type: 'FeatureCollection', features: [] });
 
     useEffect(() => {
-        if (coordinates && prevCoordinatesRef.current && mapRef.current && mapLoadedRef.current) {
+        if (coordinates && prevCoordinatesRef.current && mapRef.current) {
             addTrail(prevCoordinatesRef.current, coordinates);
         }
         prevCoordinatesRef.current = coordinates;
