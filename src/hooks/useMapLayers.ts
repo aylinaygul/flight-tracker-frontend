@@ -11,6 +11,7 @@ export const useMapLayers = ({ mapRef, coordinates, setSelectedFlight }: MapLaye
     const [existingIcons, setExistingIcons] = useState<Record<string, string>>({});
     const [animatedFeatures, setAnimatedFeatures] = useState<FeatureCollection | null>(null);
     const lastCoordinatesRef = useRef<FeatureCollection | null>(null);
+    const startPositionsRef = useRef<Record<string, [number, number]>>({});
 
     useEffect(() => {
         if (!mapRef.current || !coordinates) return;
@@ -27,14 +28,6 @@ export const useMapLayers = ({ mapRef, coordinates, setSelectedFlight }: MapLaye
             const steps = 50;
             let currentStep = 0;
 
-            const startPositions = animatedFeatures?.features.reduce((acc, feature) => {
-                const coords = (feature.geometry as GeoJSON.Point).coordinates;
-                if (coords.length === 2) {
-                    acc[feature.id as string] = coords as [number, number];
-                }
-                return acc;
-            }, {} as Record<string, [number, number]>);
-
             const animate = () => {
                 if (currentStep >= steps) {
                     setAnimatedFeatures(coordinates);
@@ -43,21 +36,30 @@ export const useMapLayers = ({ mapRef, coordinates, setSelectedFlight }: MapLaye
 
                 const newFeatures = coordinates.features.map(f => {
                     const geometry = f.geometry as GeoJSON.Point;
+                    const id = f.id as string;
 
-                    const start = startPositions?.[f.id as string] || geometry.coordinates;
+                    if (!startPositionsRef.current[id]) {
+                        if (geometry.coordinates.length === 2) {
+                            startPositionsRef.current[id] = geometry.coordinates as [number, number];
+                        }
+                    }
+
+                    const start = startPositionsRef.current[id];
                     const end = geometry.coordinates;
 
-                    const lng = start[0] + ((end[0] - start[0]) * currentStep) / steps;
-                    const lat = start[1] + ((end[1] - start[1]) * currentStep) / steps;
+                    const lng = start[0] + ((end[0] - start[0]) * (currentStep + 1)) / steps;
+                    const lat = start[1] + ((end[1] - start[1]) * (currentStep + 1)) / steps;
 
                     const angle = Math.atan2(end[1] - start[1], end[0] - start[0]) * (180 / Math.PI);
+
+                    startPositionsRef.current[id] = [lng, lat];
 
                     return {
                         ...f,
                         geometry: { ...geometry, coordinates: [lng, lat] },
                         properties: {
                             ...f.properties,
-                            icon: existingIcons[f.id as string] || f.properties?.icon || "airport",
+                            icon: existingIcons[id] || f.properties?.icon || "airport",
                             rotation: angle
                         }
                     };
@@ -70,6 +72,7 @@ export const useMapLayers = ({ mapRef, coordinates, setSelectedFlight }: MapLaye
                 currentStep++;
                 frame = requestAnimationFrame(animate);
             };
+
 
 
             animate();
